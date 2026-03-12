@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;0,900;1,300&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -136,7 +137,7 @@
     <nav class="fixed w-full z-40 top-0 transition-all duration-300 bg-earth-50/90 backdrop-blur-md border-b border-earth-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="font-serif font-black text-xl text-forest-800 tracking-tight flex items-center gap-2">
-                <span class="text-water-600 text-2xl">💧</span>
+                <img src="favicon.png" alt="Iniciativa Hídrica Logo" class="w-8 h-8 object-contain">
                 <span>Iniciativa <span class="text-earth-600">Aguacate</span></span>
             </div>
             <div class="hidden lg:flex space-x-6 text-sm font-semibold text-forest-700">
@@ -176,7 +177,7 @@
                 El cultivo de aguacate en Michoacán es un motor económico global, pero su sed está fracturando la cuenca. Necesitamos dejar de regar por costumbre y empezar a regar con conciencia.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#que" class="bg-earth-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-earth-600 transition-colors shadow-lg text-center">
+                <a href="https://github.com/A01645145/Sensor-de-humedad-con-LCD-e-indicador.git" target="_blank" rel="noopener noreferrer" class="bg-earth-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-earth-600 transition-colors shadow-lg text-center">
                     Obtén la documentación
                 </a>
                 <button onclick="openModal()" class="bg-forest-800 border border-forest-600 text-forest-100 px-8 py-4 rounded-full font-semibold text-lg hover:bg-forest-700 transition-colors text-center cursor-pointer">
@@ -397,13 +398,12 @@
                 <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-earth-200">
                     <h3 class="text-2xl font-serif font-bold text-forest-900 mb-4">1. Medición de Caudal</h3>
                     <p class="text-forest-700 mb-6 leading-relaxed">Visualizador local de flujo volumétrico en litros por minuto (L/min) y contabilidad diaria. Instalado directo en la tubería primaria.</p>
-                    <div class="relative w-full h-56 md:h-64 bg-earth-200 rounded-[1.5rem] overflow-hidden shadow-inner border border-earth-300 flex items-center justify-center group">
-                        <div class="text-center z-10 transition-transform duration-300 group-hover:scale-105">
-                            <div class="w-14 h-14 bg-white/50 rounded-full flex items-center justify-center mx-auto mb-3 outline outline-4 outline-white/20">
-                                <span class="text-xl">💧</span>
-                            </div>
-                            <span class="font-serif font-bold text-earth-800 text-sm italic opacity-80">Foto Caudalímetro</span>
-                            <p class="text-earth-600 text-[10px] mt-2 max-w-[200px] mx-auto">Hardware prototipo midiendo flujo.</p>
+                    <div class="relative w-full h-56 md:h-64 bg-earth-900 rounded-[1.5rem] overflow-hidden shadow-inner border border-earth-300 group">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+                            <source src="flow-sensor.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute bottom-3 left-3 bg-earth-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-earth-700/50">
+                            <p class="text-earth-50 text-[10px] font-bold tracking-wide uppercase">Hardware midiendo flujo</p>
                         </div>
                     </div>
                 </div>
@@ -412,13 +412,12 @@
                 <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-earth-200">
                     <h3 class="text-2xl font-serif font-bold text-forest-900 mb-4">2. Sensor de Humedad</h3>
                     <p class="text-forest-700 mb-6 leading-relaxed">Sensor resistente de humedad insertado en el subsuelo, pegado a las raíces. Transmite vía inalambrica a la App y la central.</p>
-                    <div class="relative w-full h-56 md:h-64 bg-earth-200 rounded-[1.5rem] overflow-hidden shadow-inner border border-earth-300 flex items-center justify-center group">
-                        <div class="text-center z-10 transition-transform duration-300 group-hover:scale-105">
-                            <div class="w-14 h-14 bg-white/50 rounded-full flex items-center justify-center mx-auto mb-3 outline outline-4 outline-white/20">
-                                <span class="text-xl">🌱</span>
-                            </div>
-                            <span class="font-serif font-bold text-earth-800 text-sm italic opacity-80">Foto Sensor de Humedad</span>
-                            <p class="text-earth-600 text-[10px] mt-2 max-w-[200px] mx-auto">Fotografía de la sonda instalada.</p>
+                    <div class="relative w-full h-56 md:h-64 bg-earth-900 rounded-[1.5rem] overflow-hidden shadow-inner border border-earth-300 group">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+                            <source src="humidity-sensor.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute bottom-3 left-3 bg-earth-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-earth-700/50">
+                            <p class="text-earth-50 text-[10px] font-bold tracking-wide uppercase">Sonda en tierra profunda</p>
                         </div>
                     </div>
                 </div>
@@ -427,15 +426,15 @@
                 <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-earth-200">
                     <h3 class="text-2xl font-serif font-bold text-forest-900 mb-4">3. Interfaz / App</h3>
                     <p class="text-forest-700 mb-6 leading-relaxed">Notificaciones oportunas para decir cuándo y dónde regar. Registra históricos para concientización del administrador en la oficina.</p>
-                    <div class="relative w-full h-56 md:h-64 bg-earth-200 rounded-[1.5rem] overflow-hidden shadow-inner border border-earth-300 flex items-center justify-center group">
+                    <a href="https://www.figma.com/make/HYizCkPSrdrXkzPHuVtlIl/Sistema-de-riego-para-plantas?p=f&t=mcHdPVcbWmFFl4si-0&fullscreen=1" target="_blank" rel="noopener noreferrer" class="relative block w-full h-56 md:h-64 bg-earth-200 rounded-[1.5rem] overflow-hidden shadow-inner border border-earth-300 flex items-center justify-center group cursor-pointer hover:border-water-500 hover:bg-earth-100 transition-colors">
                         <div class="text-center z-10 transition-transform duration-300 group-hover:scale-105">
-                            <div class="w-14 h-14 bg-white/50 rounded-full flex items-center justify-center mx-auto mb-3 outline outline-4 outline-white/20">
-                                <span class="text-xl">📱</span>
+                            <div class="w-14 h-14 bg-white/50 rounded-full flex items-center justify-center mx-auto mb-3 outline outline-4 outline-white/20 text-water-600 group-hover:bg-water-100 transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </div>
-                            <span class="font-serif font-bold text-earth-800 text-sm italic opacity-80">Captura de Pantalla App</span>
-                            <p class="text-earth-600 text-[10px] mt-2 max-w-[200px] mx-auto">Interfaz de uso del prototipo digital.</p>
+                            <span class="font-serif font-bold text-earth-800 text-sm group-hover:text-water-700 transition-colors">Probar Prototipo</span>
+                            <p class="text-earth-600 text-[10px] mt-2 max-w-[200px] mx-auto">Haz clic para abrir el prototipo interactivo en figma.</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
 
@@ -444,7 +443,7 @@
                 <div class="relative z-10">
                     <h3 class="text-3xl md:text-5xl font-serif font-black mb-10 text-balance">Da el primer paso hacia un uso del agua radicalmente inteligente.</h3>
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="#que" class="bg-forest-800 border border-forest-600 text-forest-100 px-8 py-5 rounded-full font-bold text-xl hover:bg-forest-700 transition-colors w-full sm:w-auto text-center">
+                        <a href="https://github.com/A01645145/Sensor-de-humedad-con-LCD-e-indicador.git" target="_blank" rel="noopener noreferrer" class="bg-forest-800 border border-forest-600 text-forest-100 px-8 py-5 rounded-full font-bold text-xl hover:bg-forest-700 transition-colors w-full sm:w-auto text-center">
                             Obtén la documentación
                         </a>
                         <button onclick="openModal()" class="bg-earth-500 text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-earth-400 transition-colors shadow-lg shadow-earth-500/20 w-full sm:w-auto">
@@ -500,13 +499,69 @@
         </div>
     </section>
 
+    <!-- 8. Recomendaciones Makers -->
+    <section class="py-24 bg-white border-b border-earth-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-bold tracking-widest text-earth-600 uppercase mb-3">Futuro del Proyecto</h2>
+                <h3 class="text-3xl md:text-5xl font-serif font-bold text-forest-900 mb-6">10 Ideas para Makers y Hackers Agrícolas</h3>
+                <p class="text-lg text-forest-700 leading-relaxed">
+                    Si eres desarrollador, agrónomo o entusiasta y planeas clonar o evolucionar este código abierto, aquí te compartimos 10 sugerencias creativas en lenguaje natural para escalar el MVP.
+                </p>
+            </div>
+
+            <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                <div class="break-inside-avoid bg-earth-50 p-6 rounded-3xl border border-earth-200 hover:shadow-md transition-shadow relative">
+                    <span class="text-earth-400 absolute text-4xl top-2 left-3 font-serif opacity-30">"</span>
+                    <p class="text-forest-800 font-medium leading-relaxed relative z-10 pl-4">Reemplaza el Wi-Fi estándar por módulos <strong>LoRaWAN</strong>. En huertas lejanas de varias hectáreas, la señal tradicional es inútil al cruzar los cerros.</p>
+                </div>
+                <div class="break-inside-avoid bg-water-50 p-6 rounded-3xl border border-water-100 hover:shadow-md transition-shadow relative">
+                    <span class="text-water-400 absolute text-4xl top-2 left-3 font-serif opacity-30">"</span>
+                    <p class="text-water-900 font-medium leading-relaxed relative z-10 pl-4">Integra la alerta edáfica con la API de clima de <strong>OpenWeather</strong>. Si hay 90% de probabilidad de lluvia, pon a frenar inteligentemente el bombeo sugerido.</p>
+                </div>
+                <div class="break-inside-avoid bg-forest-50 p-6 rounded-3xl border border-forest-100 hover:shadow-md transition-shadow relative">
+                    <span class="text-forest-400 absolute text-4xl top-2 left-3 font-serif opacity-30">"</span>
+                    <p class="text-forest-900 font-medium leading-relaxed relative z-10 pl-4">Imprime carcasas protectoras en <strong>PETG</strong>. El sol ardiente michoacano derretirá rápidamente el viejo PLA e invalidará toda tu costosa medición.</p>
+                </div>
+                <div class="break-inside-avoid bg-forest-900 p-6 rounded-3xl border border-forest-800 hover:shadow-md transition-shadow relative text-white">
+                    <span class="text-forest-700 absolute text-4xl top-2 left-3 font-serif opacity-50">"</span>
+                    <p class="font-medium leading-relaxed relative z-10 pl-4">Reutiliza celdas <strong>18650</strong> y pequeños paneles solares de 5V. Cada nodo sensor enterrado junto al árbol debería ser 100% independiente del cableado central.</p>
+                </div>
+                <div class="break-inside-avoid bg-earth-50 p-6 rounded-3xl border border-earth-200 hover:shadow-md transition-shadow relative">
+                    <span class="text-earth-400 absolute text-4xl top-2 left-3 font-serif opacity-30">"</span>
+                    <p class="text-forest-800 font-medium leading-relaxed relative z-10 pl-4">Cruza todos los datos del caudalímetro usando <strong>Home Assistant</strong> en tu casa; así obtendrás rápidamente gráficas hermosas en tiempo real sin codear dashboards desde cero.</p>
+                </div>
+                <div class="break-inside-avoid bg-water-50 p-6 rounded-3xl border border-water-100 hover:shadow-md transition-shadow relative">
+                    <span class="text-water-400 absolute text-4xl top-2 left-3 font-serif opacity-30">"</span>
+                    <p class="text-water-900 font-medium leading-relaxed relative z-10 pl-4">Añade <strong>electroválvulas</strong> troncales al sistema para que, al llegar la alerta al celular, el agricultor simplemente abra la llave sectorial remotamente con un toque.</p>
+                </div>
+                <div class="break-inside-avoid bg-forest-50 p-6 rounded-3xl border border-forest-100 hover:shadow-md transition-shadow relative">
+                    <span class="text-forest-400 absolute text-4xl top-2 left-3 font-serif opacity-30">"</span>
+                    <p class="text-forest-900 font-medium leading-relaxed relative z-10 pl-4">Compra siempre sensores capacitivos para la tierra profunda. Los <strong>sensores resistivos baratos</strong> de Arduino se oxidarán y quedarán arruinados tras un solo mes muy húmedo.</p>
+                </div>
+                <div class="break-inside-avoid bg-earth-50 p-6 rounded-3xl border border-earth-200 hover:shadow-md transition-shadow relative">
+                    <span class="text-earth-400 absolute text-4xl top-2 left-3 font-serif opacity-30">"</span>
+                    <p class="text-forest-800 font-medium leading-relaxed relative z-10 pl-4">Construye un <strong>modo kiosco público</strong> en la propia huerta. Mostrarle en gigante en un monitor a los operarios cuánta agua han salvado crea una fenomenal cultura laboral más consciente.</p>
+                </div>
+                <div class="break-inside-avoid bg-water-50 p-6 rounded-3xl border border-water-100 hover:shadow-md transition-shadow relative">
+                    <span class="text-water-400 absolute text-4xl top-2 left-3 font-serif opacity-30">"</span>
+                    <p class="text-water-900 font-medium leading-relaxed relative z-10 pl-4">Mapea libremente toda la huerta con drones. Asigna luego coordenadas exactas a cada nodo edáfico para dibujar un increíble mapa termográfico en vivo del estrés general.</p>
+                </div>
+                <div class="break-inside-avoid bg-forest-900 p-6 rounded-3xl border border-forest-800 hover:shadow-md transition-shadow relative text-white">
+                    <span class="text-forest-700 absolute text-4xl top-2 left-3 font-serif opacity-50">"</span>
+                    <p class="font-medium leading-relaxed relative z-10 pl-4">Abre todos tus datasets a las universidades. Proveer estos millones de datos crudos sobre estrés vegetal puede entrenar los <strong>futuros y revolucionarios algoritmos de IA y Machine Learning</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Final CTA Section (Cierre) -->
     <section class="py-24 bg-earth-100 border-b border-earth-200 text-center relative">
         <div class="max-w-4xl mx-auto px-6 relative z-10">
             <h3 class="text-3xl md:text-5xl font-serif font-black text-forest-900 mb-6 text-balance">El agua del mañana depende de lo que midamos hoy.</h3>
             <p class="text-lg text-forest-700 mb-10">Únete a la iniciativa abierta para preservar el campo michoacano.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#que" class="bg-forest-800 border-transparent text-earth-50 px-8 py-5 rounded-full font-bold text-xl hover:bg-forest-700 transition-colors w-full sm:w-auto text-center shadow-lg">
+                <a href="https://github.com/A01645145/Sensor-de-humedad-con-LCD-e-indicador.git" target="_blank" rel="noopener noreferrer" class="bg-forest-800 border-transparent text-earth-50 px-8 py-5 rounded-full font-bold text-xl hover:bg-forest-700 transition-colors w-full sm:w-auto text-center shadow-lg">
                     Obtén la documentación
                 </a>
                 <button onclick="openModal()" class="bg-earth-500 text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-earth-400 transition-colors shadow-lg shadow-earth-500/20 w-full sm:w-auto">
@@ -521,7 +576,7 @@
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-forest-800 pb-12 mb-8">
             <div class="md:col-span-2">
                 <div class="flex items-center gap-2 font-serif font-black text-2xl text-white mb-4 tracking-tight">
-                    <span class="text-water-600">💧</span> Iniciativa <span class="text-earth-600">Aguacate</span>
+                    <img src="favicon.png" alt="Iniciativa Hídrica Logo" class="w-8 h-8 object-contain"> Iniciativa <span class="text-earth-600">Aguacate</span>
                 </div>
                 <p class="text-forest-400 leading-relaxed max-w-sm">
                     Iniciativa conceptual y MVP orientado a salvaguardar la sustentabilidad hídrica de las huertas de aguacate en Michoacán mediante telemetría descentralizada.
