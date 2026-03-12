@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Inteligente de Riego - MVP</title>
+    <title>Iniciativa Hídrica Michoacán - Propuesta Abierta</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;0,900;1,300&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,18 +16,40 @@
             theme: {
                 extend: {
                     colors: {
-                        neo: '#1e1f26',
-                        neoDark: '#17181d',
-                        primary: '#4ade80', // vibrant green
-                    },
-                    boxShadow: {
-                         'neo': '8px 8px 16px #15161b, -8px -8px 16px #272831',
-                         'neo-inner': 'inset 8px 8px 16px #15161b, inset -8px -8px 16px #272831',
-                         'neo-primary': '0px 0px 20px rgba(74, 222, 128, 0.4), 8px 8px 16px #15161b, -8px -8px 16px #272831',
+                        earth: {
+                            50: '#f9f6f0',
+                            100: '#f1ebd9',
+                            200: '#e2d5b6',
+                            300: '#cfb989',
+                            400: '#be9c61',
+                            500: '#b1834b',
+                            600: '#a36b3f',
+                            700: '#885336',
+                            800: '#704432',
+                            900: '#5c392b',
+                        },
+                        forest: {
+                            50: '#f2f7f4',
+                            100: '#e1efe6',
+                            200: '#c4dfce',
+                            300: '#9bc6ad',
+                            400: '#6ca786',
+                            500: '#488a66',
+                            600: '#346d4e',
+                            700: '#2b5840',
+                            800: '#244635',
+                            900: '#1e3a2d',
+                            950: '#0f2018',
+                        },
+                        water: {
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        }
                     },
                     fontFamily: {
-                        tech: ['Orbitron', 'sans-serif'],
-                        body: ['Inter', 'sans-serif']
+                        serif: ['Merriweather', 'serif'],
+                        sans: ['Inter', 'sans-serif']
                     }
                 }
             }
@@ -35,358 +57,430 @@
     </script>
     <style>
         body {
-            background-color: #1e1f26;
-            color: #d1d5db; /* gray-300 */
+            background-color: #f9f6f0; /* earth-50 */
+            color: #1e3a2d; /* forest-900 */
         }
         
-        .bg-parallax {
-            background: linear-gradient(to bottom, rgba(30,31,38,0.3), #1e1f26 100%), 
-                        url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            width: 100%; height: 100vh;
-            z-index: -1;
-            opacity: 0.1;
-            filter: grayscale(100%) brightness(50%);
-            /* Prevents the background from capturing any touch/scroll events */
-            pointer-events: none;
+        .hero-pattern {
+            background-color: #0f2018; /* forest-950 */
+            background-image: radial-gradient(#2b5840 1px, transparent 1px);
+            background-size: 32px 32px;
         }
 
-        .slow-move {
-            animation: float 12s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(15px) rotate(1deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-
-        .glass-neo {
-            background: rgba(30, 31, 38, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .text-gradient {
-            background: linear-gradient(135deg, #4ade80, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .text-balance {
+            text-wrap: balance;
         }
 
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #1e1f26; 
+            background: #f9f6f0; 
         }
         ::-webkit-scrollbar-thumb {
-            background: #272831; 
+            background: #b1834b; 
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #4ade80; 
+            background: #885336; 
+        }
+
+        /* Smooth CSS Slide Animation with Cursor */
+        .rotating-words {
+            display: inline-grid;
+            grid-template-columns: 1fr;
+            vertical-align: bottom;
+            text-align: center;
+            height: 1.25em;
+            position: relative;
+        }
+        
+        .word {
+            grid-row: 1;
+            grid-column: 1;
+            opacity: 0;
+            filter: blur(4px);
+            animation: fadeWord 8.4s ease-in-out infinite;
+        }
+
+        /* .word::after {
+            content: '';
+            display: inline-block;
+            width: 0.08em;
+            height: 0.9em;
+            background-color: #cfb989;
+            margin-left: 0.08em;
+            vertical-align: middle;
+            animation: blinkCursor 0.7s step-end infinite;
+        } */
+
+        .word:nth-child(1) { animation-delay: 0s; }
+        .word:nth-child(2) { animation-delay: 2.1s; }
+        .word:nth-child(3) { animation-delay: 4.2s; }
+        .word:nth-child(4) { animation-delay: 6.3s; }
+        
+        @keyframes fadeWord {
+            0%, 25%, 100% { opacity: 0; filter: blur(4px); transform: translateY(5px); }
+            5%, 20% { opacity: 1; filter: blur(0); transform: translateY(0); }
+        }
+
+        @keyframes blinkCursor {
+            from, to { opacity: 0; }
+            50% { opacity: 1; }
         }
     </style>
 </head>
-<body class="font-body antialiased selection:bg-primary selection:text-neo">
-    
-    <div class="bg-parallax"></div>
+<body class="font-sans antialiased text-forest-900 selection:bg-earth-300 selection:text-forest-950">
 
-    <!-- 1. Barra de navegación -->
-    <nav class="fixed w-full z-40 top-0 transition-all duration-300 glass-neo">
+    <!-- Navbar -->
+    <nav class="fixed w-full z-40 top-0 transition-all duration-300 bg-earth-50/90 backdrop-blur-md border-b border-earth-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="font-tech font-bold text-xl md:text-2xl text-primary tracking-wider flex items-center gap-2">
-                <div class="w-8 h-8 rounded-full shadow-neo text-center leading-8 font-black text-white text-sm">💧</div>
-                <span class="hidden sm:inline">AGRO<span class="text-white">TECH</span></span>
+            <div class="font-serif font-black text-xl text-forest-800 tracking-tight flex items-center gap-2">
+                <span class="text-water-600 text-2xl">💧</span>
+                <span>Iniciativa <span class="text-earth-600">Aguacate</span></span>
             </div>
-            <div class="hidden lg:flex space-x-6">
-                <a href="#inicio" class="text-gray-400 hover:text-white transition-colors font-medium">Inicio</a>
-                <a href="#solucion" class="text-gray-400 hover:text-white transition-colors font-medium">Solución</a>
-                <a href="#beneficios" class="text-gray-400 hover:text-white transition-colors font-medium">Beneficios</a>
-                <a href="#impacto" class="text-gray-400 hover:text-white transition-colors font-medium">Impacto</a>
-                <a href="#contacto" class="text-gray-400 hover:text-white transition-colors font-medium">Contacto</a>
+            <div class="hidden lg:flex space-x-6 text-sm font-semibold text-forest-700">
+                <a href="#why" class="hover:text-earth-600 transition-colors">El Porqué</a>
+                <a href="#problema" class="hover:text-earth-600 transition-colors">Realidad Hídrica</a>
+                <a href="#que" class="hover:text-earth-600 transition-colors">Actores y Propuesta</a>
+                <a href="#como" class="hover:text-earth-600 transition-colors">Cómo se riega</a>
+                <a href="#prototipo" class="hover:text-earth-600 transition-colors border-l border-earth-300 pl-6">Piloto MVP</a>
             </div>
-            <button onclick="openModal()" class="shadow-neo hover:shadow-neo-inner active:shadow-neo-inner px-4 md:px-6 py-2 rounded-xl text-primary font-tech font-bold transition-all duration-300 text-xs md:text-sm">
-                SUSCRIBIRSE
+            <button onclick="openModal()" class="bg-forest-800 text-earth-50 px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-forest-700 transition-colors shadow-sm whitespace-nowrap hidden sm:inline-block">
+                Unirse MVP
             </button>
         </div>
     </nav>
 
-    <!-- 2. Hero -->
-    <section id="inicio" class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center z-10 w-full">
-            <div class="space-y-8 relative z-10">
-                <div class="inline-block shadow-neo-inner px-5 py-2 rounded-full border border-gray-800/80">
-                    <span class="text-primary font-tech text-xs md:text-sm tracking-[0.2em] font-bold uppercase flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                        Sistema inteligente de riego para aguacateros en Michoacán
+    <!-- 1. Why (Hero & Typed Animation) -->
+    <section id="why" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 hero-pattern overflow-hidden">
+        <div class="absolute top-0 right-0 w-full md:w-1/2 h-full bg-forest-900 rounded-bl-[200px] opacity-50 blur-3xl mix-blend-multiply"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-earth-800/20 text-earth-200 text-sm font-semibold tracking-wide mb-6 border border-earth-700/30">
+                Llamado a la Acción · Michoacán
+            </span>
+            <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-serif font-black text-earth-50 leading-tight mx-auto max-w-5xl mb-8">
+                El agua es finita. <br/>
+                Regar inteligentemente es <br/>
+                <span class="text-earth-300 italic font-light inline-block relative text-center w-full max-w-[500px]">
+                    <span class="rotating-words w-full">
+                        <span class="word">urgente.</span>
+                        <span class="word">responsable.</span>
+                        <span class="word">eficiente.</span>
+                        <span class="word">necesario.</span>
                     </span>
-                </div>
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-tech font-black leading-[1.1] tracking-tight text-white">
-                    RIEGA SOLO CUANDO TU HUERTA <span class="text-gradient">LO NECESITA.</span>
-                </h1>
-                <p class="text-lg md:text-xl font-tech text-primary tracking-wide">
-                    Monitorea el consumo de agua y la humedad del suelo en tiempo real.
-                </p>
-                <p class="text-base text-gray-400 font-light leading-relaxed max-w-lg">
-                    Proponemos una mejora para los sistemas de riego de los aguacateros en Michoacán mediante dos dispositivos simples pero estratégicos. El primero mide el flujo volumétrico del agua que sale de la bomba antes de entrar al sistema de riego, mostrando el consumo en una pequeña pantalla para generar conciencia sobre la cantidad de agua utilizada. El segundo mide la humedad del suelo para identificar cuándo realmente es necesario regar.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-6 pt-6">
-                    <button onclick="openModal()" class="shadow-neo-primary bg-neo text-primary font-tech font-bold px-8 py-4 rounded-xl hover:-translate-y-1 transition-transform duration-300 tracking-wide text-center">
-                        SOLICITAR DEMO
-                    </button>
-                    <a href="#solucion" class="shadow-neo bg-neo text-white text-center font-tech font-bold px-8 py-4 rounded-xl hover:shadow-neo-inner transition-shadow duration-300 tracking-wide flex items-center justify-center">
-                        VER SOLUCIÓN
-                    </a>
-                </div>
-            </div>
-
-            <!-- Visual representation -->
-            <div class="relative slow-move flex justify-center lg:justify-end">
-                <div class="w-full max-w-md aspect-square rounded-[3rem] shadow-neo bg-neo flex items-center justify-center p-8 relative overflow-hidden border border-gray-800/30">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
-                    
-                    <div class="w-64 h-64 rounded-full shadow-neo-inner bg-neoDark flex flex-col items-center justify-center relative z-10 border-4 border-neo space-y-4">
-                        <div class="text-center">
-                            <div class="text-[10px] tracking-widest text-primary uppercase font-tech mb-1">Caudal Actual</div>
-                            <div class="font-tech text-4xl text-white font-black">124<span class="text-lg text-gray-500">L/m</span></div>
-                        </div>
-                        <div class="w-3/4 h-px bg-gray-800 shadow-neo"></div>
-                        <div class="text-center">
-                            <div class="text-[10px] tracking-widest text-primary uppercase font-tech mb-1">Humedad Suelo</div>
-                            <div class="font-tech text-4xl text-white font-black">42<span class="text-lg text-gray-500">%</span></div>
-                        </div>
-                    </div>
-
-                    <div class="absolute w-full h-full animate-[spin_12s_linear_infinite]">
-                        <div class="absolute top-4 left-1/2 w-3 h-3 rounded-full bg-primary shadow-[0_0_15px_rgba(74,222,128,0.8)]"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. CTA #1 -->
-    <section class="py-16 relative z-10 border-y border-gray-800/20 bg-neoDark/50">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-2xl md:text-3xl font-tech font-bold text-white mb-4">Optimiza tu riego y reduce el desperdicio de agua</h2>
-            <p class="text-gray-400 text-lg leading-relaxed">
-                Esta solución busca que el riego deje de depender únicamente de la costumbre o la intuición, y se base en datos reales del suelo y del consumo hídrico de la huerta.
+                </span>
+            </h1>
+            <p class="text-lg md:text-xl text-forest-200 max-w-3xl mx-auto leading-relaxed mb-10 text-balance">
+                El cultivo de aguacate en Michoacán es un motor económico global, pero su sed está fracturando la cuenca. Necesitamos dejar de regar por costumbre y empezar a regar con conciencia.
             </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#que" class="bg-earth-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-earth-600 transition-colors shadow-lg">
+                    Conoce la Propuesta
+                </a>
+                <a href="#problema" class="bg-forest-800 border border-forest-600 text-forest-100 px-8 py-4 rounded-full font-semibold text-lg hover:bg-forest-700 transition-colors">
+                    Ver las Estadísticas
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- 4. Sección de solución -->
-    <section id="solucion" class="py-24 relative z-10">
+    <!-- 2. Narrativa Problema y a qué le apuntamos -->
+    <section id="problema" class="py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 space-y-4">
-                <h2 class="text-3xl md:text-5xl font-tech font-bold text-white">¿Cómo funciona la <span class="text-primary">propuesta?</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">La propuesta se compone de dos objetos principales diseñados para trabajar en sinergia.</p>
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-sm font-bold tracking-widest text-earth-600 uppercase mb-3">La Realidad de las Huertas</h2>
+                    <h3 class="text-3xl md:text-5xl font-serif font-bold text-forest-900 mb-6 leading-tight text-balance">65% del agua se pierde entre fugas, evaporación y mal uso.</h3>
+                    <div class="text-forest-700 text-lg leading-relaxed space-y-4">
+                        <p>
+                            En Michoacán se utilizan alrededor de 9,500 millones de litros de agua diarios. Sin embargo, gran parte de esta extracción riega terrenos en horarios ineficientes o donde el árbol ya está saciado.
+                        </p>
+                        <p class="font-bold text-earth-700">¿A qué parte del problema apuntamos nosotros?</p>
+                        <p>
+                            Al <strong class="text-forest-900">desperdicio por ceguera operativa</strong>. Un sistema de riego que no mide, no mejora. Si logramos visualizar la demanda exacta del suelo y los flujos anómalos, <strong>podemos reducir un 40% el uso hídrico global</strong> en las agroindustrias de la región al regar de forma inteligente.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-earth-100 p-8 rounded-3xl col-span-2 shadow-sm border border-earth-200">
+                        <div class="text-5xl font-serif font-black text-earth-700 mb-2">65<span class="text-2xl font-sans text-earth-600 font-semibold">% Fuga Constante</span></div>
+                        <p class="text-forest-800 font-medium">Volumen hídrico agrícola que se volatiliza o escurre inútilmente debido a malas prácticas, fugas de líneas y evaporación térmica.</p>
+                    </div>
+                    <div class="bg-water-50 p-6 rounded-3xl border border-water-100">
+                        <div class="text-3xl font-serif font-black text-water-700 mb-2">-40<span class="text-lg font-sans">%</span></div>
+                        <p class="text-water-900 text-sm font-bold">Meta MVP</p>
+                        <p class="text-water-900 text-xs mt-1">Estimación de ahorro de agua al implementar riego inteligente y telemetría.</p>
+                    </div>
+                    <div class="bg-forest-50 p-6 rounded-3xl border border-forest-100">
+                        <div class="text-3xl font-serif font-black text-forest-700 mb-2">9,500<span class="text-lg font-sans text-forest-600">m</span></div>
+                        <p class="text-forest-900 text-sm font-bold">Litros diarios</p>
+                        <p class="text-forest-900 text-xs mt-1">Extraídos diariamente de las mermadas cuencas michoacanas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Qué (Open Proposal & Actors) - Recuperada y mejorada -->
+    <section id="que" class="py-24 bg-earth-50 border-y border-earth-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-bold tracking-widest text-earth-600 uppercase mb-3">La Propuesta (Open Blueprint)</h2>
+                <h3 class="text-3xl md:text-5xl font-serif font-bold text-forest-900 mb-6 text-balance">Un diseño abierto para los actores de la cuenca.</h3>
+                <p class="text-lg text-forest-700 leading-relaxed">
+                    Esta no es una patente cerrada ni un sistema costoso. Es una idea estructurada para <strong>hacer, copiar, o mejorar</strong>. Buscamos que la conciencia hídrica llegue a cada huerta y a cada nivel operativo.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-[2.5rem] p-10 md:p-14 shadow-sm border border-earth-200 mb-16">
+                <h4 class="text-2xl font-serif font-bold text-forest-900 mb-8 border-b border-earth-200 pb-4">¿A quién va dirigido y qué gana cada quien?</h4>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div>
+                        <div class="text-earth-600 font-bold mb-2 flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-earth-100 flex items-center justify-center text-sm">1</span> GOBIERNO (CONAGUA)
+                        </div>
+                        <p class="text-forest-700 text-sm leading-relaxed">Como estándar de medición para otorgar o renovar concesiones hídricas agrícolas, exigiendo medidores de caudal auditables en tiempo real.</p>
+                    </div>
+                    <div>
+                        <div class="text-earth-600 font-bold mb-2 flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-earth-100 flex items-center justify-center text-sm">2</span> ONGs E INVESTIGADORES
+                        </div>
+                        <p class="text-forest-700 text-sm leading-relaxed">Como proyecto de código abierto para llevar tecnología asequible a pequeños productores y mapear el consumo real en las subcuencas.</p>
+                    </div>
+                    <div>
+                        <div class="text-earth-600 font-bold mb-2 flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-earth-100 flex items-center justify-center text-sm">3</span> INGENIEROS AGRÓNOMOS
+                        </div>
+                        <p class="text-forest-700 text-sm leading-relaxed">Para justificar con datos duros los protocolos de riego, sustituyendo la intuición por diagnósticos edáficos precisos.</p>
+                    </div>
+                    <div>
+                        <div class="text-earth-600 font-bold mb-2 flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-earth-100 flex items-center justify-center text-sm">4</span> DUEÑOS / EMPACADORAS
+                        </div>
+                        <p class="text-forest-700 text-sm leading-relaxed">Para obtener certificaciones de agricultura sustentable, mejorar el ROI disminuyendo costos eléctricos de bombeo y proteger su inversión a largo plazo.</p>
+                    </div>
+                    <div>
+                        <div class="text-earth-600 font-bold mb-2 flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-earth-100 flex items-center justify-center text-sm">5</span> OPERADORES DE HUERTA
+                        </div>
+                        <p class="text-forest-700 text-sm leading-relaxed">Dotarlos de una herramienta visual contundente y notificaciones que indican cuándo regar. Ver el flujo de agua cambiar psicológicamente reduce el engaño del desperdicio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Features y Beneficios Clave -->
+    <section class="py-24 bg-forest-900 text-white border-y border-forest-800 relative">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'100%25\' height=\'100%25\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.05\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-bold tracking-widest text-earth-400 uppercase mb-3">Las 3 Funciones Clave</h2>
+                <h3 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 text-balance">Inteligencia Compartida en el Huerto.</h3>
+                <p class="text-lg text-forest-200 leading-relaxed">
+                    Beneficios directos que otorgan nuestra suite de tecnología edáfica a los diferentes escalafones productivos del aguacate.
+                </p>
+            </div>
+
+            <!-- Features Clave -->
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="bg-forest-800 p-8 rounded-3xl border border-forest-700 hover:border-earth-500 transition-colors">
+                    <div class="w-14 h-14 bg-earth-500 rounded-full flex items-center justify-center text-2xl mb-6 shadow-lg shadow-earth-500/20">📍</div>
+                    <h4 class="text-xl font-bold font-serif mb-3 text-earth-100">Inteligencia de Riego por Sectores</h4>
+                    <p class="text-forest-300 text-sm leading-relaxed mb-4">La idea es que los operadores e ingenieros sepan exactamente en qué secciones y anillos topográficos del campo deben regar obteniendo data hiperlocalizada.</p>
+                    <div class="text-xs bg-forest-900/50 p-3 rounded-xl text-earth-300 uppercase font-bold">
+                        Beneficio al Ingeniero: <span class="font-normal text-forest-300 capitalize">Mejora la estructura reticular de irrigación y previene estrés localizado.</span>
+                    </div>
+                </div>
+                
+                <div class="bg-forest-800 p-8 rounded-3xl border border-forest-700 hover:border-earth-500 transition-colors">
+                    <div class="w-14 h-14 bg-earth-500 rounded-full flex items-center justify-center text-2xl mb-6 shadow-lg shadow-earth-500/20">📊</div>
+                    <h4 class="text-xl font-bold font-serif mb-3 text-earth-100">Histórico de Consumo (Concientización)</h4>
+                    <p class="text-forest-300 text-sm leading-relaxed mb-4">Llevar el registro en litros diarios para eliminar la ceguera operativa y auditar mermas y fugas antes de fin de mes.</p>
+                    <div class="text-xs bg-forest-900/50 p-3 rounded-xl text-earth-300 uppercase font-bold">
+                        Beneficio a Dirección: <span class="font-normal text-forest-300 capitalize">Apoya a las certificaciones de sustentabilidad y rastrea desperdicios de bombeo.</span>
+                    </div>
+                </div>
+
+                <div class="bg-forest-800 p-8 rounded-3xl border border-forest-700 hover:border-earth-500 transition-colors">
+                    <div class="w-14 h-14 bg-earth-500 rounded-full flex items-center justify-center text-2xl mb-6 shadow-lg shadow-earth-500/20">📱</div>
+                    <h4 class="text-xl font-bold font-serif mb-3 text-earth-100">Notificaciones Hídricas (App)</h4>
+                    <p class="text-forest-300 text-sm leading-relaxed mb-4">Obtén notificaciones directas en la app cuando un cuadrante alcance su punto de estrés o cuando el árbol ya se encuentre correctamente hidratado.</p>
+                    <div class="text-xs bg-forest-900/50 p-3 rounded-xl text-earth-300 uppercase font-bold">
+                        Beneficio al Operador: <span class="font-normal text-forest-300 capitalize">Trabaja por demanda del árbol (notificación push), ignorando las rutinas fallidas del calendario.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. El Cómo (Propuesta / Sonda Edáfica Clara) -->
+    <section id="como" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold tracking-widest text-earth-600 uppercase mb-3">La manera en que proponemos regar</h2>
+                <h3 class="text-3xl md:text-5xl font-serif font-bold text-forest-900 text-balance">¿Por qué cambiar nuestra forma de liberar agua?</h3>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Sensor 1 -->
-                <div class="shadow-neo bg-neo p-8 md:p-10 rounded-3xl border border-gray-800/30 group hover:shadow-neo-primary transition-all duration-300">
-                    <div class="text-primary font-tech text-sm tracking-widest uppercase mb-2">Sensor 1</div>
-                    <h3 class="text-2xl font-tech font-bold mb-4 text-white">Medidor de Flujo Volumétrico</h3>
-                    <p class="text-gray-400 leading-relaxed mb-6">Este dispositivo se instala antes de que el agua entre al sistema de riego. Su función es medir cuánta agua está saliendo de la bomba y mostrar ese dato en una pantalla pequeña. De esta forma, el productor puede visualizar en tiempo real el volumen de agua utilizado durante cada jornada de riego.</p>
-                    <div class="shadow-neo-inner bg-neoDark p-5 rounded-xl border border-gray-800/50">
-                        <span class="text-primary font-bold text-sm block mb-1">OBJETIVO:</span>
-                        <p class="text-sm text-gray-300 italic">Generar conciencia sobre el consumo hídrico y facilitar el monitoreo del agua usada en la huerta.</p>
-                    </div>
-                </div>
-
-                <!-- Sensor 2 -->
-                <div class="shadow-neo bg-neo p-8 md:p-10 rounded-3xl border border-gray-800/30 group hover:shadow-neo-primary transition-all duration-300">
-                    <div class="text-primary font-tech text-sm tracking-widest uppercase mb-2">Sensor 2</div>
-                    <h3 class="text-2xl font-tech font-bold mb-4 text-white">Medidor de Humedad del Suelo</h3>
-                    <p class="text-gray-400 leading-relaxed mb-6">Este dispositivo permite conocer el nivel de humedad de la tierra cerca de los árboles. Con esta información, el productor puede saber si el suelo todavía conserva suficiente humedad o si ya es necesario volver a regar.</p>
-                    <div class="shadow-neo-inner bg-neoDark p-5 rounded-xl border border-gray-800/50">
-                        <span class="text-primary font-bold text-sm block mb-1">OBJETIVO:</span>
-                        <p class="text-sm text-gray-300 italic">Evitar riegos innecesarios y aplicar agua solo cuando el cultivo realmente lo requiere.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. Beneficios -->
-    <section id="beneficios" class="py-24 relative z-10 border-t border-gray-800/30 bg-[#16171d]">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-center font-tech font-bold text-3xl md:text-5xl text-white mb-16">Beneficios <span class="text-primary">Principales</span></h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="shadow-neo bg-neo p-8 rounded-2xl">
-                    <h4 class="text-xl font-tech font-bold mb-3 text-white">Ahorro de agua</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Al regar solo cuando el suelo lo necesita, se evita el uso excesivo del recurso hídrico.</p>
-                </div>
-                
-                <div class="shadow-neo bg-neo p-8 rounded-2xl">
-                    <h4 class="text-xl font-tech font-bold mb-3 text-white">Mayor control del riego</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">El productor puede conocer cuánto agua consume su sistema y tomar decisiones más informadas.</p>
-                </div>
-                
-                <div class="shadow-neo bg-neo p-8 rounded-2xl">
-                    <h4 class="text-xl font-tech font-bold mb-3 text-white">Conciencia del consumo</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">La visualización directa del flujo volumétrico ayuda a entender mejor el impacto del riego diario.</p>
-                </div>
-                
-                <div class="shadow-neo bg-neo p-8 rounded-2xl">
-                    <h4 class="text-xl font-tech font-bold mb-3 text-white">Mejor uso de los recursos</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Se reduce el desperdicio y se promueve una gestión más eficiente del agua en las huertas.</p>
-                </div>
-
-                <div class="shadow-neo bg-neo p-8 rounded-2xl lg:col-span-2">
-                    <h4 class="text-xl font-tech font-bold mb-3 text-primary">Apoyo a la sostenibilidad agrícola</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">La propuesta contribuye a una producción de aguacate más responsable con el medio ambiente y con las comunidades que también dependen del agua.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. Validación / Impacto -->
-    <section id="impacto" class="py-24 relative z-10">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="shadow-neo-inner bg-neoDark p-10 md:p-16 rounded-[3rem] border border-gray-800/80 text-center relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
-                <h2 class="text-3xl font-tech font-bold text-white mb-6">¿Por qué esta solución es <span class="text-primary">relevante?</span></h2>
-                <div class="space-y-6 text-gray-400 text-lg leading-relaxed text-left md:text-center">
-                    <p>En Michoacán, el cultivo de aguacate demanda grandes volúmenes de agua, lo que ha generado preocupación por la presión sobre los recursos hídricos locales. Muchas veces el riego se realiza sin conocer con precisión ni el volumen real de agua consumida ni el nivel de humedad del suelo.</p>
-                    <p>Esto puede provocar desperdicio de agua, costos innecesarios y prácticas poco sostenibles.</p>
-                    <p class="text-white font-medium">Nuestra propuesta responde a esta necesidad mediante una solución accesible, práctica y enfocada en el monitoreo real del consumo y de la necesidad de riego.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. Testimonios / Quotes -->
-    <section class="py-20 relative z-10 border-t border-gray-800/30">
-        <div class="max-w-7xl mx-auto px-6">
-            <h3 class="text-center font-tech font-bold text-2xl mb-12 text-gray-300">Lo que esta solución puede representar para el productor</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="shadow-neo bg-neo p-8 rounded-2xl italic text-gray-400">
-                    <span class="text-primary text-4xl block font-tech leading-none mb-2">"</span>
-                    Si puedo ver cuánta agua estoy usando, puedo empezar a controlar mejor mis gastos y mi riego.
-                </div>
-                <div class="shadow-neo bg-neo p-8 rounded-2xl italic text-gray-400 transform md:-translate-y-4">
-                    <span class="text-primary text-4xl block font-tech leading-none mb-2">"</span>
-                    Conocer la humedad del suelo me ayuda a no regar de más y a cuidar mejor mis árboles.
-                </div>
-                <div class="shadow-neo bg-neo p-8 rounded-2xl italic text-gray-400">
-                    <span class="text-primary text-4xl block font-tech leading-none mb-2">"</span>
-                    No se trata solo de producir más, sino de producir mejor y con responsabilidad.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. Gatillos -->
-    <section class="py-24 relative z-10 bg-[#16171d]">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-center font-tech font-bold text-3xl md:text-5xl text-white mb-16">¿Por qué <span class="text-primary">implementarlo ahora?</span></h2>
-            <div class="grid sm:grid-cols-2 gap-6">
-                <div class="shadow-neo-inner bg-neo p-6 rounded-xl flex items-center gap-6">
-                    <div class="w-12 h-12 rounded-full shadow-neo bg-neoDark flex items-center justify-center text-primary font-bold flex-shrink-0">01</div>
-                    <div>
-                        <h4 class="text-white font-bold font-tech mb-1">Escasez hídrica</h4>
-                        <p class="text-sm text-gray-400">El agua es un recurso cada vez más limitado y su uso eficiente es una necesidad urgente.</p>
-                    </div>
-                </div>
-                <div class="shadow-neo-inner bg-neo p-6 rounded-xl flex items-center gap-6">
-                    <div class="w-12 h-12 rounded-full shadow-neo bg-neoDark flex items-center justify-center text-primary font-bold flex-shrink-0">02</div>
-                    <div>
-                        <h4 class="text-white font-bold font-tech mb-1">Producción más sostenible</h4>
-                        <p class="text-sm text-gray-400">El mercado y la sociedad valoran cada vez más las prácticas agrícolas responsables.</p>
-                    </div>
-                </div>
-                <div class="shadow-neo-inner bg-neo p-6 rounded-xl flex items-center gap-6">
-                    <div class="w-12 h-12 rounded-full shadow-neo bg-neoDark flex items-center justify-center text-primary font-bold flex-shrink-0">03</div>
-                    <div>
-                        <h4 class="text-white font-bold font-tech mb-1">Reducción de desperdicios</h4>
-                        <p class="text-sm text-gray-400">Pequeñas mejoras en el monitoreo pueden generar grandes cambios en el consumo de agua.</p>
-                    </div>
-                </div>
-                <div class="shadow-neo-inner bg-neo p-6 rounded-xl flex items-center gap-6">
-                    <div class="w-12 h-12 rounded-full shadow-neo bg-neoDark flex items-center justify-center text-primary font-bold flex-shrink-0">04</div>
-                    <div>
-                        <h4 class="text-white font-bold font-tech mb-1">Tecnología accesible</h4>
-                        <p class="text-sm text-gray-400">La propuesta usa sensores que pueden integrarse de forma sencilla a los sistemas de riego existentes.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 9. CTA #2 -->
-    <section id="contacto" class="py-32 relative z-10">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="shadow-neo bg-neo rounded-[3rem] p-10 md:p-16 border border-gray-800/30 relative overflow-hidden">
-                <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-                
-                <h2 class="text-3xl md:text-5xl font-tech font-black mb-6 text-white text-balance">Da el siguiente paso hacia un riego más inteligente</h2>
-                <p class="text-gray-400 mb-6 text-lg">
-                    Implementar medición de flujo y monitoreo de humedad puede transformar la manera en que se riegan las huertas de aguacate. Esta propuesta busca combinar conciencia, tecnología y sostenibilidad para cuidar tanto la producción como el agua de la región.
-                </p>
-                <div class="shadow-neo-inner bg-neoDark p-5 rounded-xl border border-gray-800/50 mb-10 max-w-xl mx-auto">
-                    <span class="text-primary font-bold text-sm block mb-1">PROPUESTA DE ACCIÓN:</span>
-                    <p class="text-white italic">Diseñar, probar e implementar un prototipo funcional en huertas de aguacate de Michoacán.</p>
-                </div>
-                
-                <button onclick="openModal()" class="shadow-neo-primary bg-neo text-primary font-tech font-bold text-lg px-10 py-5 rounded-2xl hover:scale-105 active:shadow-neo-inner transition-all duration-300 w-full sm:w-auto tracking-widest">
-                    SUSCRIBIRSE / PILOTO
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 10. Footer -->
-    <footer class="py-12 border-t border-gray-800/50 bg-neoDark relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-                <div class="max-w-md">
-                    <div class="font-tech font-bold text-xl text-primary tracking-wider mb-2">Sistema Inteligente de Riego</div>
-                    <p class="text-sm text-gray-500 font-mono">
-                        Para aguacateros en Michoacán. <br/>
-                        Solución enfocada en monitoreo de consumo de agua, humedad del suelo y uso responsable del recurso hídrico.
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <p class="text-forest-700 text-lg leading-relaxed mb-6">
+                        Históricamente, el operario empírico riega "cada tercer día", asumiendo que el sol seca todo por parejo. Nuestra propuesta central <strong>exige que el árbol de aguacate sea quien "pida" el riego</strong>, basándonos rigurosamente en datos del subsuelo.
                     </p>
+                    
+                    <div class="bg-earth-50 p-8 rounded-3xl border border-earth-100 shadow-sm relative mt-8">
+                        <div class="absolute -left-3 -top-3 w-10 h-10 bg-earth-400 text-white flex items-center justify-center font-bold text-lg rounded-full shadow-lg">🌱</div>
+                        <h4 class="text-2xl font-serif font-bold text-forest-900 mb-4 ml-6">Sonda Edáfica de Humedad Profunda</h4>
+                        <p class="text-forest-700 leading-relaxed mb-4">
+                            Este es nuestro protagonista tecnológico. A diferencia de medir humedad atmosférica o ver que la tierra superficial "está seca", insertamos una <strong>sonda edáfica a distintas profundidades en la zona de las raíces radiculares</strong> activas. 
+                        </p>
+                        <p class="text-forest-700 leading-relaxed">
+                            Mide la <em>tensión matricial</em> del suelo: literalmente, el esfuerzo que tiene que hacer el árbol para extraer la gota de agua de la tierra. Si la planta entra en un estrés moderado, la sonda envía un comando de alerta a la App y a la pantalla. <strong>Si hay humedad profunda, bloquea el ciclo de la bomba.</strong>
+                        </p>
+                    </div>
                 </div>
-                <div class="flex flex-col space-y-2 text-sm text-gray-400 font-medium">
-                    <a href="#contacto" class="hover:text-primary transition-colors">Contacto</a>
-                    <a href="#solucion" class="hover:text-primary transition-colors">Información del proyecto</a>
-                    <a href="#beneficios" class="hover:text-primary transition-colors">Preguntas frecuentes</a>
+                
+                <div class="bg-forest-50 p-8 rounded-3xl border border-forest-100">
+                    <h4 class="text-xl font-serif font-bold text-forest-900 mb-6">El Proceso Propuesto:</h4>
+                    <ol class="space-y-6 relative border-l border-forest-300 ml-4 py-2">
+                        <li class="pl-8 relative">
+                            <span class="absolute -left-4 top-0 w-8 h-8 rounded-full bg-water-600 text-white flex items-center justify-center font-bold text-sm shadow-md ring-4 ring-forest-50">1</span>
+                            <h5 class="font-bold text-forest-900 text-lg">Monitoreo 24/7 Radicular</h5>
+                            <p class="text-forest-700 text-sm mt-1">La sonda edáfica capta la capacidad de retención y la extracción natural del cultivo en el fondo, no en la superficie seca.</p>
+                        </li>
+                        <li class="pl-8 relative">
+                            <span class="absolute -left-4 top-0 w-8 h-8 rounded-full bg-water-600 text-white flex items-center justify-center font-bold text-sm shadow-md ring-4 ring-forest-50">2</span>
+                            <h5 class="font-bold text-forest-900 text-lg">Umbral de Resecamiento Excedido</h5>
+                            <p class="text-forest-700 text-sm mt-1">Cuando la tensiometría baja del límite biológico del árbol, dispara una notificación a la App del operador recomendando iniciar el cuadrante.</p>
+                        </li>
+                        <li class="pl-8 relative">
+                            <span class="absolute -left-4 top-0 w-8 h-8 rounded-full bg-water-600 text-white flex items-center justify-center font-bold text-sm shadow-md ring-4 ring-forest-50">3</span>
+                            <h5 class="font-bold text-forest-900 text-lg">Habilitación de Bomba y Telemetría</h5>
+                            <p class="text-forest-700 text-sm mt-1">El operador riega bajo demanda informada. El panel de *Flujo Visual* interviene en tiempo real registrando los miles de litros por la tubería en el histórico.</p>
+                        </li>
+                    </ol>
                 </div>
             </div>
-            <div class="mt-12 text-center text-xs text-gray-700 uppercase tracking-widest font-tech border-t border-gray-800/50 pt-8">
-                &copy; 2026 Todos los derechos reservados.
+        </div>
+    </section>
+
+    <!-- 6. MVP / Prototipo (Sección Piloto con Fotos y nuevo CTA) -->
+    <section id="prototipo" class="bg-earth-100 pt-32 pb-24 border-t border-earth-200">
+        <div class="max-w-7xl mx-auto px-6 mb-20">
+            <div class="text-center mb-16">
+                <span class="inline-block py-1.5 px-4 rounded-full bg-forest-800 text-earth-50 text-xs font-bold uppercase tracking-widest mb-6 shadow-sm">
+                    Fase 1 · Pruebas de Campo
+                </span>
+                <h2 class="text-4xl md:text-6xl font-serif font-black text-forest-900 mb-6 text-balance mx-auto">Sé parte de las primeras huertas conscientes.</h2>
+                <p class="text-lg text-forest-800 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Nuestra misión actual es fondear e instalar las primeras unidades prototipo MVP en huertas piloto alrededor de Michoacán. Queremos demostrar empíricamente cómo cambian los números cuando el árbol dicta el ciclo del agua, no un calendario obsoleto.  
+                </p>
             </div>
+
+            <div class="grid lg:grid-cols-2 gap-10 text-left mb-16">
+                <!-- Hardware 1: Flujo -->
+                <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-earth-200">
+                    <h3 class="text-2xl font-serif font-bold text-forest-900 mb-4">1. Medición de Caudal</h3>
+                    <p class="text-forest-700 mb-6 leading-relaxed">Visualizador local de flujo volumétrico en litros por minuto (L/min) y contabilidad diaria. Instalado directo en la tubería primaria.</p>
+                    <div class="relative w-full h-64 md:h-72 bg-earth-200 rounded-[1.5rem] overflow-hidden shadow-inner border border-earth-300 flex items-center justify-center group">
+                        <div class="text-center z-10 transition-transform duration-300 group-hover:scale-105">
+                            <div class="w-16 h-16 bg-white/50 rounded-full flex items-center justify-center mx-auto mb-4 outline outline-4 outline-white/20">
+                                <span class="text-2xl">💧</span>
+                            </div>
+                            <span class="font-serif font-bold text-earth-800 italic opacity-80">Foto del Caudalímetro</span>
+                            <p class="text-earth-600 text-xs mt-2 max-w-[200px] mx-auto">Reemplazar con imagen de hardware prototipo midiendo flujo de agua.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hardware 2: Humedad -->
+                <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-earth-200">
+                    <h3 class="text-2xl font-serif font-bold text-forest-900 mb-4">2. Sonda Edáfica Profunda</h3>
+                    <p class="text-forest-700 mb-6 leading-relaxed">Sensor de tensión matricial de alta durabilidad insertado en el subsuelo. Transmite vía inalambrica a la central de control principal.</p>
+                    <div class="relative w-full h-64 md:h-72 bg-earth-200 rounded-[1.5rem] overflow-hidden shadow-inner border border-earth-300 flex items-center justify-center group">
+                        <div class="text-center z-10 transition-transform duration-300 group-hover:scale-105">
+                            <div class="w-16 h-16 bg-white/50 rounded-full flex items-center justify-center mx-auto mb-4 outline outline-4 outline-white/20">
+                                <span class="text-2xl">🌱</span>
+                            </div>
+                            <span class="font-serif font-bold text-earth-800 italic opacity-80">Foto de Sonda Radicular</span>
+                            <p class="text-earth-600 text-xs mt-2 max-w-[200px] mx-auto">Reemplazar con fotografía de la sonda real instalada cerca de las raíces.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-forest-900 rounded-[3rem] p-10 md:p-16 text-center text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'100%25\' height=\'100%25\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.05\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');"></div>
+                <div class="relative z-10">
+                    <h3 class="text-3xl md:text-5xl font-serif font-black mb-10 text-balance">Da el primer paso hacia un uso del agua radicalmente inteligente.</h3>
+                    <button onclick="openModal()" class="bg-earth-500 text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-earth-400 transition-colors shadow-lg shadow-earth-500/20 w-full sm:w-auto">
+                        Inscribir mi huerta al Piloto MVP
+                    </button>
+                    <ul class="mt-8 flex flex-col md:flex-row flex-wrap justify-center gap-4 md:gap-10 text-forest-200 font-medium">
+                        <li class="flex items-center justify-center gap-2"><span class="text-earth-400">✓</span> Reduce costos energéticos</li>
+                        <li class="flex items-center justify-center gap-2"><span class="text-earth-400">✓</span> Mejora la estructura radicular</li>
+                        <li class="flex items-center justify-center gap-2"><span class="text-earth-400">✓</span> Inteligencia para el operador</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer Restaurado -->
+    <footer class="bg-forest-950 py-16 border-t border-forest-900 text-forest-300 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-forest-800 pb-12 mb-8">
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-2 font-serif font-black text-2xl text-white mb-4 tracking-tight">
+                    <span class="text-water-600">💧</span> Iniciativa <span class="text-earth-600">Aguacate</span>
+                </div>
+                <p class="text-forest-400 leading-relaxed max-w-sm">
+                    Iniciativa conceptual y MVP orientado a salvaguardar la sustentabilidad hídrica de las huertas de aguacate en Michoacán mediante telemetría descentralizada.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Navegación</h4>
+                <ul class="space-y-3 font-medium text-sm">
+                    <li><a href="#como" class="hover:text-earth-400 transition-colors">¿Qué hace cada sensor?</a></li>
+                    <li><a href="#que" class="hover:text-earth-400 transition-colors">Beneficios para Actores</a></li>
+                    <li><a href="#problema" class="hover:text-earth-400 transition-colors">Datos de Extra-Caudal</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Contacto / Legal</h4>
+                <ul class="space-y-3 font-medium text-sm">
+                    <li>demo@riegointeligente.mx</li>
+                    <li>Michoacán, México</li>
+                    <li class="pt-4"><span class="text-xs text-forest-500 italic block">Uso académico / prototipo. El contenido puede adaptarse a pruebas formales.</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-forest-500 font-bold tracking-widest uppercase">
+            &copy; 2026 Iniciativa Hídrica Michoacán. Todos los derechos reservados.
         </div>
     </footer>
 
     <!-- Modal (Newsletter/Forms iframe) -->
     <div id="formModal" class="fixed inset-0 z-50 flex items-center justify-center opacity-0 invisible pointer-events-none transition-all duration-300">
         <!-- Backdrop -->
-        <div class="absolute inset-0 bg-[#0f1014]/90 backdrop-blur-md" onclick="closeModal()"></div>
+        <div class="absolute inset-0 bg-forest-950/80 backdrop-blur-sm" onclick="closeModal()"></div>
         
         <!-- Modal Content -->
-        <div class="relative w-full max-w-4xl mx-4 bg-neo shadow-neo border border-gray-800 overflow-hidden transform scale-95 transition-transform duration-300 rounded-3xl" id="modalContent">
+        <div class="relative w-full max-w-4xl mx-4 bg-earth-50 shadow-2xl rounded-3xl overflow-hidden transform scale-95 transition-transform duration-300 border border-earth-200" id="modalContent">
             
-            <div class="flex justify-between items-center px-6 py-4 border-b border-gray-800/50 bg-[#1a1b21]">
+            <div class="flex justify-between items-center px-6 py-4 border-b border-earth-200 bg-white">
                 <div class="flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                    <h3 class="font-tech font-bold text-lg text-white uppercase tracking-widest">Suscripción al Piloto</h3>
+                    <span class="w-2 h-2 rounded-full bg-forest-600 animate-pulse"></span>
+                    <h3 class="font-sans font-bold text-forest-900 uppercase tracking-widest text-sm">Convertir Huerta en Piloto Consciente</h3>
                 </div>
-                <button onclick="closeModal()" class="w-10 h-10 shadow-neo-inner rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800/50 transition-all">
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full flex items-center justify-center text-forest-700 hover:bg-earth-200 transition-all">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
             
-            <div class="p-2 md:p-6 h-[80vh] max-h-[700px] w-full flex justify-center bg-neo">
-                <!-- IFRAME INJECTED HERE -->
+            <div class="p-2 md:p-6 h-[80vh] max-h-[700px] w-full flex justify-center bg-earth-50">
                 <iframe width="100%" height="100%" src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=pj5axnwPC0CJNFptwXBWRZxAtt1ur1VIqgRKvjCDXRJUNVlLSTBTWjE4NkozQ0Q5MENRWDkxWktPQi4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; border-radius: 16px; background: transparent; max-width:100%; max-height:100%" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
             </div>
         </div>
