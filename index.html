@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riego Inteligente - MVP</title>
+    <title>Sistema Inteligente de Riego - MVP</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,12 +19,10 @@
                         neo: '#1e1f26',
                         neoDark: '#17181d',
                         primary: '#4ade80', // vibrant green
-                        secondary: '#3b82f6', // bright blue
                     },
                     boxShadow: {
                          'neo': '8px 8px 16px #15161b, -8px -8px 16px #272831',
                          'neo-inner': 'inset 8px 8px 16px #15161b, inset -8px -8px 16px #272831',
-                         'neo-sm': '4px 4px 8px #15161b, -4px -4px 8px #272831',
                          'neo-primary': '0px 0px 20px rgba(74, 222, 128, 0.4), 8px 8px 16px #15161b, -8px -8px 16px #272831',
                     },
                     fontFamily: {
@@ -77,7 +75,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Iframe scrollbar tweaks for webkit inside modal */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -97,214 +94,272 @@
     
     <div class="bg-parallax"></div>
 
-    <!-- Navigation -->
+    <!-- 1. Barra de navegación -->
     <nav class="fixed w-full z-40 top-0 transition-all duration-300 glass-neo">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="font-tech font-bold text-2xl text-primary tracking-wider flex items-center gap-2">
-                <div class="w-8 h-8 rounded-full shadow-neo text-center leading-8 font-black text-white text-sm">A</div>
-                <span>AGRO<span class="text-white">TECH</span></span>
+            <div class="font-tech font-bold text-xl md:text-2xl text-primary tracking-wider flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full shadow-neo text-center leading-8 font-black text-white text-sm">💧</div>
+                <span class="hidden sm:inline">AGRO<span class="text-white">TECH</span></span>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#sistema" class="text-gray-400 hover:text-white transition-colors font-medium">Arquitectura</a>
-                <a href="#beneficios" class="text-gray-400 hover:text-white transition-colors font-medium">Validación</a>
+            <div class="hidden lg:flex space-x-6">
+                <a href="#inicio" class="text-gray-400 hover:text-white transition-colors font-medium">Inicio</a>
+                <a href="#solucion" class="text-gray-400 hover:text-white transition-colors font-medium">Solución</a>
+                <a href="#beneficios" class="text-gray-400 hover:text-white transition-colors font-medium">Beneficios</a>
+                <a href="#impacto" class="text-gray-400 hover:text-white transition-colors font-medium">Impacto</a>
+                <a href="#contacto" class="text-gray-400 hover:text-white transition-colors font-medium">Contacto</a>
             </div>
-            <button onclick="openModal()" class="shadow-neo hover:shadow-neo-inner active:shadow-neo-inner px-6 py-2 rounded-xl text-primary font-tech font-bold transition-all duration-300 text-sm">
-                ACCESO MVP
+            <button onclick="openModal()" class="shadow-neo hover:shadow-neo-inner active:shadow-neo-inner px-4 md:px-6 py-2 rounded-xl text-primary font-tech font-bold transition-all duration-300 text-xs md:text-sm">
+                SUSCRIBIRSE
             </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
+    <!-- 2. Hero -->
+    <section id="inicio" class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center z-10 w-full">
             <div class="space-y-8 relative z-10">
                 <div class="inline-block shadow-neo-inner px-5 py-2 rounded-full border border-gray-800/80">
                     <span class="text-primary font-tech text-xs md:text-sm tracking-[0.2em] font-bold uppercase flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                        Piloto MVP 2026
+                        Sistema inteligente de riego para aguacateros en Michoacán
                     </span>
                 </div>
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-tech font-black leading-[1.1] tracking-tight text-white">
-                    RIEGO <br/>
-                    <span class="text-gradient">EXACTO.</span>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-tech font-black leading-[1.1] tracking-tight text-white">
+                    RIEGA SOLO CUANDO TU HUERTA <span class="text-gradient">LO NECESITA.</span>
                 </h1>
-                <p class="text-lg md:text-xl text-gray-400 font-light leading-relaxed max-w-lg">
-                    Revolucionamos las huertas de aguacate. Toma decisiones basadas en telemetría local con sensores de humedad y flujo. Elimina el desperdicio y domina tu cultivo.
+                <p class="text-lg md:text-xl font-tech text-primary tracking-wide">
+                    Monitorea el consumo de agua y la humedad del suelo en tiempo real.
+                </p>
+                <p class="text-base text-gray-400 font-light leading-relaxed max-w-lg">
+                    Proponemos una mejora para los sistemas de riego de los aguacateros en Michoacán mediante dos dispositivos simples pero estratégicos. El primero mide el flujo volumétrico del agua que sale de la bomba antes de entrar al sistema de riego, mostrando el consumo en una pequeña pantalla para generar conciencia sobre la cantidad de agua utilizada. El segundo mide la humedad del suelo para identificar cuándo realmente es necesario regar.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-6 pt-6">
-                    <button onclick="openModal()" class="shadow-neo-primary bg-neo text-primary font-tech font-bold px-8 py-4 rounded-xl hover:-translate-y-1 transition-transform duration-300 tracking-wide">
-                        INICIAR PILOTO
+                    <button onclick="openModal()" class="shadow-neo-primary bg-neo text-primary font-tech font-bold px-8 py-4 rounded-xl hover:-translate-y-1 transition-transform duration-300 tracking-wide text-center">
+                        SOLICITAR DEMO
                     </button>
-                    <a href="#sistema" class="shadow-neo bg-neo text-white text-center font-tech font-bold px-8 py-4 rounded-xl hover:shadow-neo-inner transition-shadow duration-300 tracking-wide">
-                        EXPLORAR SISTEMA
+                    <a href="#solucion" class="shadow-neo bg-neo text-white text-center font-tech font-bold px-8 py-4 rounded-xl hover:shadow-neo-inner transition-shadow duration-300 tracking-wide flex items-center justify-center">
+                        VER SOLUCIÓN
                     </a>
-                </div>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-10 border-t border-gray-800/50">
-                    <div>
-                        <div class="text-white font-tech font-bold text-2xl">2</div>
-                        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Nodos IoT</div>
-                    </div>
-                    <div>
-                        <div class="text-white font-tech font-bold text-2xl">100%</div>
-                        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Independiente</div>
-                    </div>
-                    <div class="hidden sm:block">
-                        <div class="text-white font-tech font-bold text-2xl">0</div>
-                        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Conjeturas</div>
-                    </div>
                 </div>
             </div>
 
             <!-- Visual representation -->
             <div class="relative slow-move flex justify-center lg:justify-end">
                 <div class="w-full max-w-md aspect-square rounded-[3rem] shadow-neo bg-neo flex items-center justify-center p-8 relative overflow-hidden border border-gray-800/30">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
                     
-                    <!-- Center Display -->
-                    <div class="w-64 h-64 rounded-full shadow-neo-inner bg-neoDark flex items-center justify-center relative z-10 border-4 border-neo">
-                        <div class="text-center space-y-3">
-                            <div class="text-xs tracking-widest text-primary uppercase font-tech">Humedad Radicular</div>
-                            <div class="font-tech text-6xl text-white font-black">42<span class="text-2xl text-gray-500">%</span></div>
-                            <div class="shadow-neo inline-block px-3 py-1 rounded-md text-[10px] text-green-400 font-mono">
-                                ESTADO: ÓPTIMO
-                            </div>
+                    <div class="w-64 h-64 rounded-full shadow-neo-inner bg-neoDark flex flex-col items-center justify-center relative z-10 border-4 border-neo space-y-4">
+                        <div class="text-center">
+                            <div class="text-[10px] tracking-widest text-primary uppercase font-tech mb-1">Caudal Actual</div>
+                            <div class="font-tech text-4xl text-white font-black">124<span class="text-lg text-gray-500">L/m</span></div>
+                        </div>
+                        <div class="w-3/4 h-px bg-gray-800 shadow-neo"></div>
+                        <div class="text-center">
+                            <div class="text-[10px] tracking-widest text-primary uppercase font-tech mb-1">Humedad Suelo</div>
+                            <div class="font-tech text-4xl text-white font-black">42<span class="text-lg text-gray-500">%</span></div>
                         </div>
                     </div>
 
-                    <!-- Orbiting dots -->
-                    <div class="absolute w-full h-full animate-[spin_10s_linear_infinite]">
-                        <div class="absolute top-4 left-1/2 w-4 h-4 rounded-full bg-primary shadow-[0_0_15px_rgba(74,222,128,0.8)]"></div>
+                    <div class="absolute w-full h-full animate-[spin_12s_linear_infinite]">
+                        <div class="absolute top-4 left-1/2 w-3 h-3 rounded-full bg-primary shadow-[0_0_15px_rgba(74,222,128,0.8)]"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sistema Section -->
-    <section id="sistema" class="py-24 relative z-10">
+    <!-- 3. CTA #1 -->
+    <section class="py-16 relative z-10 border-y border-gray-800/20 bg-neoDark/50">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-2xl md:text-3xl font-tech font-bold text-white mb-4">Optimiza tu riego y reduce el desperdicio de agua</h2>
+            <p class="text-gray-400 text-lg leading-relaxed">
+                Esta solución busca que el riego deje de depender únicamente de la costumbre o la intuición, y se base en datos reales del suelo y del consumo hídrico de la huerta.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. Sección de solución -->
+    <section id="solucion" class="py-24 relative z-10">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20 space-y-4">
-                <h2 class="text-3xl md:text-5xl font-tech font-bold text-white">Arquitectura <span class="text-primary">Sensorial</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Hardware robusto diseñado para la exigencia del campo michoacano. Interfaces puras que traducen la tierra en datos precisos.</p>
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-3xl md:text-5xl font-tech font-bold text-white">¿Cómo funciona la <span class="text-primary">propuesta?</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">La propuesta se compone de dos objetos principales diseñados para trabajar en sinergia.</p>
             </div>
             
             <div class="grid md:grid-cols-2 gap-12">
-                <!-- Sensor Flujo -->
-                <div class="shadow-neo bg-neo p-10 rounded-3xl border border-gray-800/30 group transition-all duration-300 hover:shadow-neo-primary">
-                    <div class="w-16 h-16 shadow-neo-inner rounded-xl flex items-center justify-center mb-8 text-white group-hover:text-primary transition-colors">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-tech font-bold mb-4 text-white">Telemetría de Flujo</h3>
-                    <p class="text-gray-400 leading-relaxed mb-6 text-sm md:text-base">Audita la eficiencia real de tus bombas. Visualiza el caudal exacto proyectado en litros por minuto. Conoce en la pantalla de despliegue principal el consumo total y detecta alteraciones instantáneamente.</p>
-                    <div class="shadow-neo-inner bg-neoDark p-5 rounded-xl font-mono text-xs md:text-sm text-gray-300 border border-gray-800/50">
-                        <div class="flex justify-between items-center mb-2">
-                            <span>> LECTURA_ACTUAL</span>
-                            <span class="text-primary">124.7 L/MIN</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span>> ACUMULATIVO_HOY</span>
-                            <span class="text-white">5,982 L</span>
-                        </div>
+                <!-- Sensor 1 -->
+                <div class="shadow-neo bg-neo p-8 md:p-10 rounded-3xl border border-gray-800/30 group hover:shadow-neo-primary transition-all duration-300">
+                    <div class="text-primary font-tech text-sm tracking-widest uppercase mb-2">Sensor 1</div>
+                    <h3 class="text-2xl font-tech font-bold mb-4 text-white">Medidor de Flujo Volumétrico</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">Este dispositivo se instala antes de que el agua entre al sistema de riego. Su función es medir cuánta agua está saliendo de la bomba y mostrar ese dato en una pantalla pequeña. De esta forma, el productor puede visualizar en tiempo real el volumen de agua utilizado durante cada jornada de riego.</p>
+                    <div class="shadow-neo-inner bg-neoDark p-5 rounded-xl border border-gray-800/50">
+                        <span class="text-primary font-bold text-sm block mb-1">OBJETIVO:</span>
+                        <p class="text-sm text-gray-300 italic">Generar conciencia sobre el consumo hídrico y facilitar el monitoreo del agua usada en la huerta.</p>
                     </div>
                 </div>
 
-                <!-- Sensor Humedad -->
-                <div class="shadow-neo bg-neo p-10 rounded-3xl border border-gray-800/30 group transition-all duration-300 hover:shadow-neo-primary">
-                    <div class="w-16 h-16 shadow-neo-inner rounded-xl flex items-center justify-center mb-8 text-white group-hover:text-primary transition-colors">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-tech font-bold mb-4 text-white">Sonda Edáfica Profunda</h3>
-                    <p class="text-gray-400 leading-relaxed mb-6 text-sm md:text-base">Monitorea la humedad de forma focalizada cerca del bulbo radicular. Cancela los riegos sistémicos innecesarios y activa la bomba únicamente bajo el umbral de estrés de la planta.</p>
-                    <div class="shadow-neo-inner bg-neoDark p-5 rounded-xl font-mono text-xs md:text-sm text-gray-300 border border-gray-800/50">
-                        <div class="flex justify-between items-center mb-2">
-                            <span>> NIVEL_HUMEDAD</span>
-                            <span class="text-red-400">22% (CRÍTICO)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span>> ACCIÓN_SISTEMA</span>
-                            <span class="text-primary italic animate-pulse">REQ. RIEGO AHORA</span>
-                        </div>
+                <!-- Sensor 2 -->
+                <div class="shadow-neo bg-neo p-8 md:p-10 rounded-3xl border border-gray-800/30 group hover:shadow-neo-primary transition-all duration-300">
+                    <div class="text-primary font-tech text-sm tracking-widest uppercase mb-2">Sensor 2</div>
+                    <h3 class="text-2xl font-tech font-bold mb-4 text-white">Medidor de Humedad del Suelo</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">Este dispositivo permite conocer el nivel de humedad de la tierra cerca de los árboles. Con esta información, el productor puede saber si el suelo todavía conserva suficiente humedad o si ya es necesario volver a regar.</p>
+                    <div class="shadow-neo-inner bg-neoDark p-5 rounded-xl border border-gray-800/50">
+                        <span class="text-primary font-bold text-sm block mb-1">OBJETIVO:</span>
+                        <p class="text-sm text-gray-300 italic">Evitar riegos innecesarios y aplicar agua solo cuando el cultivo realmente lo requiere.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Beneficios / Data -->
-    <section id="beneficios" class="py-24 relative z-10 border-t border-gray-800/30">
+    <!-- 5. Beneficios -->
+    <section id="beneficios" class="py-24 relative z-10 border-t border-gray-800/30 bg-[#16171d]">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div class="shadow-neo bg-neo p-10 rounded-3xl border border-gray-800/10">
-                    <div class="text-5xl font-tech font-black text-primary mb-4 drop-shadow-[0_0_10px_rgba(74,222,128,0.5)]">30%</div>
-                    <h4 class="text-lg font-tech font-bold mb-2 text-white">Optimización Hídrica</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed">Reducción estimada al mitigar ciclos de sobrerriego basándose en diagnósticos edáficos precisos.</p>
+            <h2 class="text-center font-tech font-bold text-3xl md:text-5xl text-white mb-16">Beneficios <span class="text-primary">Principales</span></h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="shadow-neo bg-neo p-8 rounded-2xl">
+                    <h4 class="text-xl font-tech font-bold mb-3 text-white">Ahorro de agua</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Al regar solo cuando el suelo lo necesita, se evita el uso excesivo del recurso hídrico.</p>
                 </div>
-                <!-- Elevate the middle one natively in neumorphism -->
-                <div class="shadow-neo-inner bg-neoDark p-10 rounded-3xl border border-gray-800/80 transform md:-translate-y-4">
-                    <div class="text-5xl font-tech font-black text-white mb-4">ON-PREM</div>
-                    <h4 class="text-lg font-tech font-bold mb-2 text-primary">Edge Computing</h4>
-                    <p class="text-sm text-gray-400 leading-relaxed">Procesamiento de datos 100% local. Tu huerta funciona con total autonomía de la nube o señales móviles.</p>
+                
+                <div class="shadow-neo bg-neo p-8 rounded-2xl">
+                    <h4 class="text-xl font-tech font-bold mb-3 text-white">Mayor control del riego</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">El productor puede conocer cuánto agua consume su sistema y tomar decisiones más informadas.</p>
                 </div>
-                <div class="shadow-neo bg-neo p-10 rounded-3xl border border-gray-800/10">
-                    <div class="text-5xl font-tech font-black text-white mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">+ROI</div>
-                    <h4 class="text-lg font-tech font-bold mb-2 text-white">Decisiones Métricas</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed">Sustituye la intuición generacional por analítica cruda. Aumenta la rentabilidad por hectárea.</p>
+                
+                <div class="shadow-neo bg-neo p-8 rounded-2xl">
+                    <h4 class="text-xl font-tech font-bold mb-3 text-white">Conciencia del consumo</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">La visualización directa del flujo volumétrico ayuda a entender mejor el impacto del riego diario.</p>
+                </div>
+                
+                <div class="shadow-neo bg-neo p-8 rounded-2xl">
+                    <h4 class="text-xl font-tech font-bold mb-3 text-white">Mejor uso de los recursos</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Se reduce el desperdicio y se promueve una gestión más eficiente del agua en las huertas.</p>
+                </div>
+
+                <div class="shadow-neo bg-neo p-8 rounded-2xl lg:col-span-2">
+                    <h4 class="text-xl font-tech font-bold mb-3 text-primary">Apoyo a la sostenibilidad agrícola</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">La propuesta contribuye a una producción de aguacate más responsable con el medio ambiente y con las comunidades que también dependen del agua.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Validación / Impacto -->
+    <section id="impacto" class="py-24 relative z-10">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="shadow-neo-inner bg-neoDark p-10 md:p-16 rounded-[3rem] border border-gray-800/80 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+                <h2 class="text-3xl font-tech font-bold text-white mb-6">¿Por qué esta solución es <span class="text-primary">relevante?</span></h2>
+                <div class="space-y-6 text-gray-400 text-lg leading-relaxed text-left md:text-center">
+                    <p>En Michoacán, el cultivo de aguacate demanda grandes volúmenes de agua, lo que ha generado preocupación por la presión sobre los recursos hídricos locales. Muchas veces el riego se realiza sin conocer con precisión ni el volumen real de agua consumida ni el nivel de humedad del suelo.</p>
+                    <p>Esto puede provocar desperdicio de agua, costos innecesarios y prácticas poco sostenibles.</p>
+                    <p class="text-white font-medium">Nuestra propuesta responde a esta necesidad mediante una solución accesible, práctica y enfocada en el monitoreo real del consumo y de la necesidad de riego.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="py-24 relative z-10 overflow-hidden">
+    <!-- 7. Testimonios / Quotes -->
+    <section class="py-20 relative z-10 border-t border-gray-800/30">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-center font-tech font-bold text-3xl mb-16 text-white"><span class="text-primary">Validación</span> de Campo</h2>
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="shadow-neo bg-neo p-8 rounded-2xl">
-                    <p class="text-gray-400 italic mb-6">"Poder visualizar el gasto exacto de la bomba en una pantalla de alto contraste en sitio transforma por completo la mentalidad del operador. Pasamos de adivinar a administrar con rigor."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 shadow-neo-inner rounded-full flex items-center justify-center font-tech font-bold text-sm text-white bg-neoDark">AT</div>
-                        <div>
-                            <div class="text-sm font-bold text-white">Asesor Técnico</div>
-                            <div class="text-xs text-primary font-tech uppercase tracking-wide">Despliegue Beta</div>
-                        </div>
+            <h3 class="text-center font-tech font-bold text-2xl mb-12 text-gray-300">Lo que esta solución puede representar para el productor</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="shadow-neo bg-neo p-8 rounded-2xl italic text-gray-400">
+                    <span class="text-primary text-4xl block font-tech leading-none mb-2">"</span>
+                    Si puedo ver cuánta agua estoy usando, puedo empezar a controlar mejor mis gastos y mi riego.
+                </div>
+                <div class="shadow-neo bg-neo p-8 rounded-2xl italic text-gray-400 transform md:-translate-y-4">
+                    <span class="text-primary text-4xl block font-tech leading-none mb-2">"</span>
+                    Conocer la humedad del suelo me ayuda a no regar de más y a cuidar mejor mis árboles.
+                </div>
+                <div class="shadow-neo bg-neo p-8 rounded-2xl italic text-gray-400">
+                    <span class="text-primary text-4xl block font-tech leading-none mb-2">"</span>
+                    No se trata solo de producir más, sino de producir mejor y con responsabilidad.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Gatillos -->
+    <section class="py-24 relative z-10 bg-[#16171d]">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-center font-tech font-bold text-3xl md:text-5xl text-white mb-16">¿Por qué <span class="text-primary">implementarlo ahora?</span></h2>
+            <div class="grid sm:grid-cols-2 gap-6">
+                <div class="shadow-neo-inner bg-neo p-6 rounded-xl flex items-center gap-6">
+                    <div class="w-12 h-12 rounded-full shadow-neo bg-neoDark flex items-center justify-center text-primary font-bold flex-shrink-0">01</div>
+                    <div>
+                        <h4 class="text-white font-bold font-tech mb-1">Escasez hídrica</h4>
+                        <p class="text-sm text-gray-400">El agua es un recurso cada vez más limitado y su uso eficiente es una necesidad urgente.</p>
                     </div>
                 </div>
-                <div class="shadow-neo bg-neo p-8 rounded-2xl">
-                    <p class="text-gray-400 italic mb-6">"El verdadero valor radica en que la sonda de humedad y el luxómetro no compiten, convergen en una sola matriz de datos para autorizar el bombeo. Brillante."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 shadow-neo-inner rounded-full flex items-center justify-center font-tech font-bold text-sm text-white bg-neoDark">IP</div>
-                        <div>
-                            <div class="text-sm font-bold text-white">Ingeniero de Producción</div>
-                            <div class="text-xs text-primary font-tech uppercase tracking-wide">Validación de Prototipo</div>
-                        </div>
+                <div class="shadow-neo-inner bg-neo p-6 rounded-xl flex items-center gap-6">
+                    <div class="w-12 h-12 rounded-full shadow-neo bg-neoDark flex items-center justify-center text-primary font-bold flex-shrink-0">02</div>
+                    <div>
+                        <h4 class="text-white font-bold font-tech mb-1">Producción más sostenible</h4>
+                        <p class="text-sm text-gray-400">El mercado y la sociedad valoran cada vez más las prácticas agrícolas responsables.</p>
+                    </div>
+                </div>
+                <div class="shadow-neo-inner bg-neo p-6 rounded-xl flex items-center gap-6">
+                    <div class="w-12 h-12 rounded-full shadow-neo bg-neoDark flex items-center justify-center text-primary font-bold flex-shrink-0">03</div>
+                    <div>
+                        <h4 class="text-white font-bold font-tech mb-1">Reducción de desperdicios</h4>
+                        <p class="text-sm text-gray-400">Pequeñas mejoras en el monitoreo pueden generar grandes cambios en el consumo de agua.</p>
+                    </div>
+                </div>
+                <div class="shadow-neo-inner bg-neo p-6 rounded-xl flex items-center gap-6">
+                    <div class="w-12 h-12 rounded-full shadow-neo bg-neoDark flex items-center justify-center text-primary font-bold flex-shrink-0">04</div>
+                    <div>
+                        <h4 class="text-white font-bold font-tech mb-1">Tecnología accesible</h4>
+                        <p class="text-sm text-gray-400">La propuesta usa sensores que pueden integrarse de forma sencilla a los sistemas de riego existentes.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="py-32 relative z-10">
-        <div class="max-w-3xl mx-auto px-6 text-center">
-            <div class="shadow-neo bg-neo rounded-[3rem] p-12 md:p-20 border border-gray-800/30">
-                <h2 class="text-4xl md:text-5xl font-tech font-black mb-6 text-white">Asegura tu Lugar.</h2>
-                <p class="text-gray-400 mb-10 text-lg">Buscamos a los productores más innovadores de Michoacán para formar parte exclusiva del despliegue del MVP 2026. Cupos limitados.</p>
-                <button onclick="openModal()" class="shadow-neo-primary bg-neo text-primary font-tech font-bold text-lg px-10 py-5 rounded-2xl hover:scale-105 active:shadow-neo-inner transition-all duration-300 w-full sm:w-auto">
-                    ACCEDER AL PILOTO AHORA
+    <!-- 9. CTA #2 -->
+    <section id="contacto" class="py-32 relative z-10">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="shadow-neo bg-neo rounded-[3rem] p-10 md:p-16 border border-gray-800/30 relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+                
+                <h2 class="text-3xl md:text-5xl font-tech font-black mb-6 text-white text-balance">Da el siguiente paso hacia un riego más inteligente</h2>
+                <p class="text-gray-400 mb-6 text-lg">
+                    Implementar medición de flujo y monitoreo de humedad puede transformar la manera en que se riegan las huertas de aguacate. Esta propuesta busca combinar conciencia, tecnología y sostenibilidad para cuidar tanto la producción como el agua de la región.
+                </p>
+                <div class="shadow-neo-inner bg-neoDark p-5 rounded-xl border border-gray-800/50 mb-10 max-w-xl mx-auto">
+                    <span class="text-primary font-bold text-sm block mb-1">PROPUESTA DE ACCIÓN:</span>
+                    <p class="text-white italic">Diseñar, probar e implementar un prototipo funcional en huertas de aguacate de Michoacán.</p>
+                </div>
+                
+                <button onclick="openModal()" class="shadow-neo-primary bg-neo text-primary font-tech font-bold text-lg px-10 py-5 rounded-2xl hover:scale-105 active:shadow-neo-inner transition-all duration-300 w-full sm:w-auto tracking-widest">
+                    SUSCRIBIRSE / PILOTO
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- 10. Footer -->
     <footer class="py-12 border-t border-gray-800/50 bg-neoDark relative z-10">
-        <div class="max-w-7xl mx-auto px-6 text-center flex flex-col items-center">
-            <div class="font-tech font-bold text-xl text-primary tracking-wider mb-4 opacity-50">AGROTEXT MVP</div>
-            <p class="text-sm text-gray-600 max-w-md mb-6 font-mono">
-                Desarrollo Conceptual / Prototipo de Validación.<br/>Sistemas Hídricos Michoacán.
-            </p>
-            <div class="text-xs text-gray-700 uppercase tracking-widest font-tech">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+                <div class="max-w-md">
+                    <div class="font-tech font-bold text-xl text-primary tracking-wider mb-2">Sistema Inteligente de Riego</div>
+                    <p class="text-sm text-gray-500 font-mono">
+                        Para aguacateros en Michoacán. <br/>
+                        Solución enfocada en monitoreo de consumo de agua, humedad del suelo y uso responsable del recurso hídrico.
+                    </p>
+                </div>
+                <div class="flex flex-col space-y-2 text-sm text-gray-400 font-medium">
+                    <a href="#contacto" class="hover:text-primary transition-colors">Contacto</a>
+                    <a href="#solucion" class="hover:text-primary transition-colors">Información del proyecto</a>
+                    <a href="#beneficios" class="hover:text-primary transition-colors">Preguntas frecuentes</a>
+                </div>
+            </div>
+            <div class="mt-12 text-center text-xs text-gray-700 uppercase tracking-widest font-tech border-t border-gray-800/50 pt-8">
                 &copy; 2026 Todos los derechos reservados.
             </div>
         </div>
@@ -321,7 +376,7 @@
             <div class="flex justify-between items-center px-6 py-4 border-b border-gray-800/50 bg-[#1a1b21]">
                 <div class="flex items-center gap-3">
                     <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                    <h3 class="font-tech font-bold text-lg text-white uppercase tracking-widest">Portal de Acceso Piloto</h3>
+                    <h3 class="font-tech font-bold text-lg text-white uppercase tracking-widest">Suscripción al Piloto</h3>
                 </div>
                 <button onclick="closeModal()" class="w-10 h-10 shadow-neo-inner rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800/50 transition-all">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
